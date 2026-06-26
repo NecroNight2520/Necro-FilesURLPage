@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Necroねくろ</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2 class="title">Necroねくろ</h2>
+
+<div class="box">
+
+  <input id="password" type="password" placeholder="パスワード">
+
+  <input id="url" type="text" placeholder="URL">
+
+  <textarea id="message" maxlength="200" placeholder="メッセージ（200文字）"></textarea>
+
+  <button onclick="postData()">アップロード</button>
+
+</div>
+
+<hr>
+
+<h3>投稿一覧</h3>
+<div id="posts"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// 投稿
+window.postData = async function () {
+
+  const pass = document.getElementById("password").value;
+  const url = document.getElementById("url").value;
+  const msg = document.getElementById("message").value;
+
+  // 🔐 パスワード（ここ変更）
+  if (pass !== "necro123") {
+    alert("パスワード違うぞ");
+    return;
+  }
+
+  if (!url) return alert("URLが空だぞ");
+
+  await addDoc(collection(db, "posts"), {
+    url: url,
+    message: msg,
+    time: serverTimestamp()
+  });
+
+  loadPosts();
+};
+
+// 表示
+async function loadPosts() {
+
+  const q = query(collection(db, "posts"), orderBy("time", "desc"));
+  const snap = await getDocs(q);
+
+  const box = document.getElementById("posts");
+  box.innerHTML = "";
+
+  snap.forEach(doc => {
+    const d = doc.data();
+
+    box.innerHTML += `
+      <div class="post">
+        <p>${d.message}</p>
+        <a href="${d.url}" target="_blank">ダウンロード / 開く</a>
+      </div>
+    `;
+  });
+}
+
+loadPosts();
+</script>
+
+</body>
+</html>
