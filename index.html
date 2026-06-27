@@ -14,21 +14,18 @@
   <div id="list"></div>
 
   <script type="module">
-  // Firebase読み込み
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // 🔥ここにFirebase設定入れる（後で貼るやつ）
   const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
+    apiKey: "ここにAPIキー",
+    authDomain: "ここにauthDomain",
+    projectId: "ここにprojectId"
   };
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // 投稿ボタン
   window.post = async function () {
     const msg = document.getElementById("msg").value;
     const url = document.getElementById("url").value;
@@ -39,8 +36,8 @@
       time: new Date().toISOString()
     });
 
-    alert("保存した！");
+    alert("保存できた！");
   }
-  </script>
+      </script>
 </body>
 </html>
