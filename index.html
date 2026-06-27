@@ -31,40 +31,43 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  const list = document.getElementById("list");
+  window.addEventListener("DOMContentLoaded", () => {
+    const list = document.getElementById("list");
 
-  async function load() {
-    list.innerHTML = "";
-    const querySnapshot = await getDocs(collection(db, "posts"));
+    async function load() {
+      list.innerHTML = "";
 
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
+      const querySnapshot = await getDocs(collection(db, "posts"));
 
-      const div = document.createElement("div");
-      div.innerHTML = `
-        <p>${data.message}</p>
-        <a href="${data.url}" target="_blank">${data.url}</a>
-        <hr>
-      `;
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
 
-      list.appendChild(div);
-    });
-  }
+        const div = document.createElement("div");
+        div.innerHTML = `
+          <p>${data.message}</p>
+          <a href="${data.url}" target="_blank">${data.url}</a>
+          <hr>
+        `;
 
-  window.post = async function () {
-    const msg = document.getElementById("msg").value;
-    const url = document.getElementById("url").value;
+        list.appendChild(div);
+      });
+    }
 
-    await addDoc(collection(db, "posts"), {
-      message: msg,
-      url: url,
-      time: new Date().toISOString()
-    });
+    window.post = async function () {
+      const msg = document.getElementById("msg").value;
+      const url = document.getElementById("url").value;
 
-    await load(); // ←これが表示更新
-  };
+      await addDoc(collection(db, "posts"), {
+        message: msg,
+        url: url,
+        time: new Date().toISOString()
+      });
 
-  load(); // ←最初に読み込み
-                          </script>
+      load();
+    };
+
+    load();
+  });
+  </script>
 </body>
 </html>
