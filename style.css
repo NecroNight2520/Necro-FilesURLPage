@@ -39,3 +39,17 @@ button {
   width: 300px;
   border-radius: 8px;
 }
+
+#list div {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+}
+
+body {
+  background: url("https://i.imgur.com/QtCgIfc.png") no-repeat center center fixed;
+  background-size: cover;
+}
