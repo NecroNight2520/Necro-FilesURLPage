@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Necro File</title>
+  <meta charset="UTF-8">
+  <title>Necro File URL Page</title>
 </head>
 <body>
-  <h1>動いてるぞ！</h1>
-  <p>Firebase + GitHub Pages OK</p>
+  <h1>URL掲示板テスト</h1>
+
+  <input id="msg" placeholder="メッセージ">
+  <input id="url" placeholder="URL">
+  <button onclick="post()">投稿</button>
+
+  <div id="list"></div>
+
+  <script>
+    function post() {
+      const msg = document.getElementById("msg").value;
+      const url = document.getElementById("url").value;
+
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <p>${msg}</p>
+        <a href="${url}" target="_blank">${url}</a>
+        <hr>
+      `;
+
+      document.getElementById("list").appendChild(div);
+    }
+  </script>
 </body>
 </html>
