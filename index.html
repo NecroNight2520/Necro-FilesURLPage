@@ -52,10 +52,20 @@
         list.appendChild(div);
       });
     }
+window.post = async function () {
+  console.log("post clicked"); // ←確認用
 
-    window.post = async function () {
-      const msg = document.getElementById("msg").value;
-      const url = document.getElementById("url").value;
+  const msg = document.getElementById("msg").value;
+  const url = document.getElementById("url").value;
+
+  await addDoc(collection(db, "posts"), {
+    message: msg,
+    url: url,
+    time: new Date().toISOString()
+  });
+
+  await load();
+};
 
       await addDoc(collection(db, "posts"), {
         message: msg,
