@@ -55,23 +55,26 @@ window.addEventListener("DOMContentLoaded", () => {
     console.log("件数:", querySnapshot.size);
   }
 
-  window.post = async function () {
-  alert("投稿ボタンが押された");
+    window.post = async function () {
+    alert("投稿ボタンが押された");
 
-  const msg = document.getElementById("msg").value;
-  const url = document.getElementById("url").value;
+    const msg = document.getElementById("msg").value;
+    const url = document.getElementById("url").value;
 
-  await addDoc(collection(db, "posts"), {
-    message: msg,
-    url: url,
-    time: new Date().toISOString()
-  });
+    await addDoc(collection(db, "posts"), {
+      message: msg,
+      url: url,
+      time: new Date().toISOString()
+    });
 
-  await load();
+    await load();
 
-  document.getElementById("msg").value = "";
-  document.getElementById("url").value = "";
-};
-  </script>
+    document.getElementById("msg").value = "";
+    document.getElementById("url").value = "";
+  };
+
+  load();
+});
+</script>
 </body>
 </html>
