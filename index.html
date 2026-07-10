@@ -57,14 +57,21 @@ window.addEventListener("DOMContentLoaded", () => {
 
   window.post = async function () {
     const msg = document.getElementById("msg").value;
-    const url = document.getElementById("url").value;
+    const url = docwindow.post = async function () {
+  const msg = document.getElementById("msg").value;
+  const url = document.getElementById("url").value;
 
-    document.getElementById("msg").value = "";
-    document.getElementById("url").value = "";
-  };
+  await addDoc(collection(db, "posts"), {
+    message: msg,
+    url: url,
+    time: new Date().toISOString()
+  });
 
-  load();
-});
+  await load();
+
+  document.getElementById("msg").value = "";
+  document.getElementById("url").value = "";
+};
   </script>
 </body>
 </html>
