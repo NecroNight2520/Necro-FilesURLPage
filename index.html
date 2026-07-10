@@ -56,35 +56,8 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   window.post = async function () {
-  console.log("post clicked");
-
-  const msg = document.getElementById("msg").value;
-  const url = document.getElementById("url").value;
-
-  window.post = async function () {
-  console.log("post clicked");
-
-  const msg = document.getElementById("msg").value;
-  const url = document.getElementById("url").value;
-
-  await addDoc(collection(db, "posts"), {
-    message: msg,
-    url: url,
-    time: new Date().toISOString()
-  });
-
-  await load();
-
-  document.getElementById("msg").value = "";
-  document.getElementById("url").value = "";
-};
-
-load();
-});
-
-  document.getElementById("msg").value = "";
-  document.getElementById("url").value = "";
-};
+    const msg = document.getElementById("msg").value;
+    const url = document.getElementById("url").value;
 
     await addDoc(collection(db, "posts"), {
       message: msg,
@@ -92,11 +65,14 @@ load();
       time: new Date().toISOString()
     });
 
-    load();
+    await load();
+
+    document.getElementById("msg").value = "";
+    document.getElementById("url").value = "";
   };
 
   load();
 });
-    </script>
+  </script>
 </body>
 </html>
