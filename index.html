@@ -59,14 +59,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const msg = document.getElementById("msg").value;
     const url = document.getElementById("url").value;
 
-    await addDoc(collection(db, "posts"), {
-      message: msg,
-      url: url,
-      time: new Date().toISOString()
-    });
-
-    await load();
-
     document.getElementById("msg").value = "";
     document.getElementById("url").value = "";
   };
