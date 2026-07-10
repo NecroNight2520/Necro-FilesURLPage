@@ -61,6 +61,12 @@ window.addEventListener("DOMContentLoaded", () => {
   const msg = document.getElementById("msg").value;
   const url = document.getElementById("url").value;
 
+  window.post = async function () {
+  console.log("post clicked");
+
+  const msg = document.getElementById("msg").value;
+  const url = document.getElementById("url").value;
+
   await addDoc(collection(db, "posts"), {
     message: msg,
     url: url,
@@ -68,6 +74,13 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   await load();
+
+  document.getElementById("msg").value = "";
+  document.getElementById("url").value = "";
+};
+
+load();
+});
 
   document.getElementById("msg").value = "";
   document.getElementById("url").value = "";
