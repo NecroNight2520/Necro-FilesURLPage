@@ -15,6 +15,7 @@ body {
   flex-direction: column;
   gap: 10px;
   width: 300px;
+  max-width: 90%;
   margin: auto;
 }
 
@@ -37,19 +38,11 @@ button {
   margin: 10px auto;
   padding: 10px;
   width: 300px;
+  max-width: 90%;
   border-radius: 8px;
+  word-break: break-all;
 }
 
-#list div {
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 10px;
-  backdrop-filter: blur(6px);
-}
-
-body {
-  background: url("https://i.imgur.com/QtCgIfc.png") no-repeat center center fixed;
-  background-size: cover;
+a {
+  color: #7db7ff;
 }
